@@ -1,0 +1,22 @@
+{
+  "name": "deck-editor",
+  "version": "1.0.0",
+  "description": "Deck editor for making and printing prototype game cards for physical or virtual playtests.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oneowhat/deck-editor.git"
+  },
+  "author": "Brendan Kendrick",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oneowhat/deck-editor/issues"
+  },
+  "homepage": "https://github.com/oneowhat/deck-editor#readme",
+  "devDependencies": {
+    "electron": "^25.2.0"
+  }
+}
