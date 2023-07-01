@@ -1,22 +1,53 @@
 {
   "name": "deck-editor",
-  "version": "1.0.0",
-  "description": "Deck editor for making and printing prototype game cards for physical or virtual playtests.",
-  "main": "main.js",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "better-sqlite3-with-prebuilds": "^7.4.3",
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3",
+    "electron": "^25.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.0",
+    "react-scripts": "5.0.1",
+    "wait-on": "^7.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "main": "public/main.js",
+  "homepage": "./",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "wait-on tcp:127.0.0.1:3000 && electron .",
+    "postinstall": "install-app-deps"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/oneowhat/deck-editor.git"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "author": "Brendan Kendrick",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/oneowhat/deck-editor/issues"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
-  "homepage": "https://github.com/oneowhat/deck-editor#readme",
   "devDependencies": {
-    "electron": "^25.2.0"
+    "tailwindcss": "^3.3.2"
   }
 }
