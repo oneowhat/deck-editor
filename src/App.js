@@ -3,6 +3,7 @@ import Home from './components/Home';
 import Layout from './components/Layout';
 import RouterError from './components/RouterError';
 import NewDeck from './components/NewDeck';
+import NewProject from './components/NewProject';
 
 function App() {
 
@@ -15,6 +16,10 @@ function App() {
         {
           index: true,
           element: <Home />
+        },
+        {
+          path: '/new-project',
+          element: <NewProject />
         },
         {
           path: '/new-deck',

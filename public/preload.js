@@ -1,7 +1,18 @@
 const { contextBridge, ipcRenderer } = require('electron');
-const deckDb = require('./db/models/deck');
 
 contextBridge.exposeInMainWorld('api', {
-  quitApp: (args) => ipcRenderer.send('quit-app', args),
-  getDecks: () => deckDb.getDecks()
+  quitApp: (args) => 
+    ipcRenderer.send('quit-app', args),
+  getProjects: async (args) => {
+    return await ipcRenderer.invoke('get-projects');
+  },
+  getProjectById: async (id) => {
+    return await ipcRenderer.invoke('get-project-by-id', id);
+  },
+  addProject: async (project) => {
+    return await ipcRenderer.invoke('add-project', project);
+  },
+  getDecks: async (args) => {
+    return await ipcRenderer.invoke('get-decks');
+  }
 });

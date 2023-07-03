@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import DeckList from './DeckList';
+import ProjectList from './ProjectList';
 
 function Home() {
 
@@ -12,8 +12,8 @@ function Home() {
       Hello world!
     </h1>
     <button onClick={handleQuit}>Quit</button>
-    <Link to="/new-deck">New Deck</Link>
-    <DeckList />
+    <Link to="/new-project">New Project</Link>
+    <ProjectList />
   </div>;
 }
 

@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
+import { findAll } from '../services/projectService';
 
-function DeckList() {
+function ProjectList() {
 
-  const [decks, setDecks] = useState([]);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      const nextDecks = await window.api.getDecks();
-      setDecks(nextDecks);
+      const nextProjects = await findAll();
+      setProjects(nextProjects);
     }
 
     fetchData();
@@ -21,7 +22,7 @@ function DeckList() {
         </tr>
       </thead>
       <tbody>
-        {decks.map(d => <tr key={d.deckId}>
+        {projects.map(d => <tr key={d.projectId}>
           <td className="border px-4 py-2">{d.name}</td>
         </tr>)}
       </tbody>
@@ -29,4 +30,4 @@ function DeckList() {
   </>
 }
 
-export default DeckList;
+export default ProjectList;

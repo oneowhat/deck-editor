@@ -1,5 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const deckRepo = require('./db/deckRepository');
+const projectRepository = require('./db/projectRepository');
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -17,6 +19,22 @@ const createWindow = () => {
 
 ipcMain.on('quit-app', (args) => {
   app.quit();
+});
+
+ipcMain.handle('get-decks', async (args) => {
+  return deckRepo.findAll();
+});
+
+ipcMain.handle('get-projects', async (args) => {
+  return projectRepository.findAll();
+});
+
+ipcMain.handle('get-project-by-id', async (event, id) => {
+  return projectRepository.findById(id);
+});
+
+ipcMain.handle('add-project', async (event, project) => {
+  return projectRepository.add(project);
 });
 
 app.whenReady().then(() => {

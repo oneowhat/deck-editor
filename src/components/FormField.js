@@ -47,11 +47,11 @@ function FormField({
   };
 
   return (
-    <div class="flex flex-wrap -mx-3 mb-6">
-      <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+    <div className="flex flex-wrap -mx-3 mb-6">
+      <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
         {type === 'checkbox'
           ? (
-            <label class="md:w-2/3 block text-gray-500 font-bold" htmlFor={name}>
+            <label className="md:w-2/3 block text-gray-500 font-bold" htmlFor={name}>
               <input
                 className="mr-2 leading-tight"
                 type="checkbox"
@@ -67,7 +67,7 @@ function FormField({
           )
           : (
             <>
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor={name}>
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor={name}>
                 {label}
               </label>
               {renderField()}
