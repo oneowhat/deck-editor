@@ -17,21 +17,21 @@ exports.findById = function(id) {
     const db = new sqlite3.Database(__dirname + './deck-builder.db');
     let project = null;
     db.serialize(() => {
-      const getProjectStatement = 'select projectId, name from projects where projectId = ?';
-      getProjectStatement.get(id, (rows) => {
-        if (rows.length === 0) {
+      const getProjectStatement = db.prepare('select projectId, name from projects where projectId = ?');
+      getProjectStatement.get(id, (err, row) => {
+        if (!row) {
           resolve(null);
         }
-        project = rows[0];
+        project = row;
       });
-      statement.finalize();
+      getProjectStatement.finalize();
 
-      const getDecckStatement = 'select deckId, name, columnCount, rowCount, updatedAt from decks where projectId = ?';
-      getDecckStatement.get(id, (rows) => {
+      const getDeckStatement = db.prepare('select deckId, name, columnCount, rowCount, updatedAt from decks where projectId = ?');
+      getDeckStatement.all(id, (err, rows) => {
         project.decks = rows;
         resolve(project);
       });
-      statement.finalize();
+      getDeckStatement.finalize();
     });
 
     db.close();

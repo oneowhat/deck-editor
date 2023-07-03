@@ -1,17 +1,4 @@
-import { useEffect, useState } from 'react';
-
-function DeckList() {
-
-  const [decks, setDecks] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const nextDecks = await window.api.getDecks();
-      setDecks(nextDecks);
-    }
-
-    fetchData();
-  }, []);
+function DeckList({ decks }) {
 
   return <>
     <table className="table-auto">

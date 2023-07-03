@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { findAll } from '../services/projectService';
+import { Link } from 'react-router-dom';
 
 function ProjectList() {
 
@@ -23,7 +24,9 @@ function ProjectList() {
       </thead>
       <tbody>
         {projects.map(d => <tr key={d.projectId}>
-          <td className="border px-4 py-2">{d.name}</td>
+          <td className="border px-4 py-2">
+            <Link to={`/project/${d.projectId}`}>{d.name}</Link>
+          </td>
         </tr>)}
       </tbody>
     </table>

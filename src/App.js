@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import RouterError from './components/RouterError';
 import NewDeck from './components/NewDeck';
 import NewProject from './components/NewProject';
+import ProjectDetail from './components/ProjectDetail';
 
 function App() {
 
@@ -16,6 +17,10 @@ function App() {
         {
           index: true,
           element: <Home />
+        },
+        {
+          path: '/project/:id',
+          element: <ProjectDetail />
         },
         {
           path: '/new-project',
