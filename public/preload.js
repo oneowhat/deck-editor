@@ -14,5 +14,8 @@ contextBridge.exposeInMainWorld('api', {
   },
   getDecks: async (args) => {
     return await ipcRenderer.invoke('get-decks');
-  }
+  },
+  addDeck: async (deck) => {
+    return await ipcRenderer.invoke('add-deck', deck);
+  },
 });

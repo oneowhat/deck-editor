@@ -1,43 +1,54 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { add } from '../services/deckService';
 
 import Form from './Form';
 
 function NewDeck() {
 
   const navigate = useNavigate();
+  const { projectId } = useParams();
 
   const [deckAttributes, setDeckAttributes] = useState({
-    deckName: '',
-    rows: 10,
-    columns: 7
+    projectId,
+    name: '',
+    rowCount: 10,
+    columnCount: 7
   });
 
   const fields = [
     {
-      name: 'deckName',
+      name: 'name',
       label: 'Deck name',
       type: 'text'
     },
     {
-      name: 'columns',
+      name: 'columnCount',
       label: 'Columns',
       type: 'number'
     },
     {
-      name: 'rows',
+      name: 'rowCount',
       label: 'Rows',
       type: 'number'
     },
   ];
 
-  const handleSubmit = (nextDeckAttributes) => {
-    setDeckAttributes(nextDeckAttributes);
-    navigate('/');
+  const handleSubmit = (nextAttributes, setErrors) => {
+    const deck = { projectId, ...nextAttributes };
+    add(deck)
+      .then(data => {
+        if (data.deckId) {
+          navigate('/');
+        }
+      })
+      .catch(err => {
+        setErrors(err);
+      });
   };
 
   if (true) {
-    return <Form 
+    return <Form
       fields={fields}
       values={deckAttributes}
       onSubmit={handleSubmit}

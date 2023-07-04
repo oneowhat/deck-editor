@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { findById } from "../services/projectService";
 import DeckList from './DeckList';
 
@@ -24,9 +24,9 @@ function ProjectDetail() {
     fetchData();
   }, [id]);
 
-
   return <>
     <h2>{project.name} Details</h2>
+    <Link to={`/new-deck/${id}`}>Add Deck</Link>
     <DeckList decks={project.decks} />
   </>;
 

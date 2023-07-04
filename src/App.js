@@ -27,7 +27,7 @@ function App() {
           element: <NewProject />
         },
         {
-          path: '/new-deck',
+          path: '/new-deck/:projectId',
           element: <NewDeck />
         }
       ]
